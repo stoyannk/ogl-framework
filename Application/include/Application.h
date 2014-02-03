@@ -6,6 +6,9 @@ namespace oglwork
 struct APP_EXPORTED_SYMBOL AppParams
 {
 	const char* Name;
+	unsigned Width;
+	unsigned Height;
+	bool Fullscreen;
 };
 
 class APP_EXPORTED_SYMBOL Application
@@ -22,6 +25,8 @@ public:
 private:
 	AppParams m_InitParams;
 	std::ofstream m_Log;
+
+	SDL_Window* m_Window;
 };
 
 }

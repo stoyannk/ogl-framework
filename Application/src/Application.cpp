@@ -13,6 +13,7 @@ void LogOutputFunction(void* userdata,
 }
 
 Application::Application()
+	: m_Window(nullptr)
 {}
 
 bool Application::Initialize(const AppParams& params)
@@ -26,6 +27,20 @@ bool Application::Initialize(const AppParams& params)
 	SDL_LogSetOutputFunction(&LogOutputFunction, this);
 
 	SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "Initialization successful");
+
+	unsigned flags = SDL_WINDOW_OPENGL;
+	if (params.Fullscreen) {
+		flags |= SDL_WINDOW_FULLSCREEN;
+	}
+
+	m_Window = SDL_CreateWindow(
+		params.Name,
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		params.Width,
+		params.Height,
+		flags
+		);
 
 	return true;
 }
@@ -76,6 +91,10 @@ void Application::Log(int category, SDL_LogPriority priority, const char* messag
 
 Application::~Application()
 {
+	if (m_Window) {
+		SDL_DestroyWindow(m_Window);
+	}
+
 	if (SDL_WasInit(0)) {
 		SDL_Quit();
 	}
