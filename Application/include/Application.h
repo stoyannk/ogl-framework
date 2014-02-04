@@ -17,8 +17,8 @@ public:
 	Application();
 
 	virtual bool Initialize(const AppParams& params);
-
 	virtual void Log(int category, SDL_LogPriority priority, const char* message);
+	void Run();
 
 	virtual ~Application();
 
@@ -29,6 +29,8 @@ private:
 	SDL_Window* m_Window;
 
 	SDL_GLContext m_OglContext;
+
+	bool m_Quit;
 };
 
 }

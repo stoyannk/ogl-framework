@@ -15,6 +15,7 @@ void LogOutputFunction(void* userdata,
 Application::Application()
 	: m_Window(nullptr)
 	, m_OglContext(nullptr)
+	, m_Quit(false)
 {}
 
 bool Application::Initialize(const AppParams& params)
@@ -74,6 +75,21 @@ Application::~Application()
 
 	if (SDL_WasInit(0)) {
 		SDL_Quit();
+	}
+}
+
+void Application::Run()
+{
+	while (!m_Quit) {
+		SDL_Event event;
+		while (SDL_PollEvent(&event)) {
+			switch (event.type)
+			{
+			case SDL_QUIT:
+				m_Quit = true;
+				break;
+			}
+		}
 	}
 }
 
