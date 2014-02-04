@@ -27,6 +27,8 @@ private:
 	std::ofstream m_Log;
 
 	SDL_Window* m_Window;
+
+	SDL_GLContext m_OglContext;
 };
 
 }

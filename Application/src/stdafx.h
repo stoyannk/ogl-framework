@@ -3,6 +3,7 @@
 #include "../include/Declarations.h"
 
 #include <SDL.h>
+#include <GL/glew.h>
 
 #include <string>
 #include <fstream>
