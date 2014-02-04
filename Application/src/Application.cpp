@@ -16,6 +16,8 @@ Application::Application()
 	: m_Window(nullptr)
 	, m_OglContext(nullptr)
 	, m_Quit(false)
+	, m_PerfFrequency(0LL)
+	, m_LastFrameCounter(0LL)
 {}
 
 bool Application::Initialize(const AppParams& params)
@@ -60,6 +62,8 @@ bool Application::Initialize(const AppParams& params)
 		return false;
 	}
 
+	m_PerfFrequency = SDL_GetPerformanceFrequency();
+
 	return true;
 }
 
@@ -80,6 +84,7 @@ Application::~Application()
 
 void Application::Run()
 {
+	m_LastFrameCounter = SDL_GetPerformanceCounter();
 	while (!m_Quit) {
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
@@ -90,6 +95,14 @@ void Application::Run()
 				break;
 			}
 		}
+
+		auto now = SDL_GetPerformanceCounter();
+
+		auto dt = double(now - m_LastFrameCounter) / m_PerfFrequency;
+
+		Update(dt);
+
+		m_LastFrameCounter = now;
 	}
 }
 

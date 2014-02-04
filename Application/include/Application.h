@@ -22,6 +22,8 @@ public:
 
 	virtual ~Application();
 
+	virtual void Update(double dtSeconds) = 0;
+	
 private:
 	AppParams m_InitParams;
 	std::ofstream m_Log;
@@ -29,6 +31,9 @@ private:
 	SDL_Window* m_Window;
 
 	SDL_GLContext m_OglContext;
+
+	unsigned long long m_PerfFrequency;
+	unsigned long long m_LastFrameCounter;
 
 	bool m_Quit;
 };
