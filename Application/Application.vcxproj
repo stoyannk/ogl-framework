@@ -96,11 +96,13 @@
   <ItemGroup>
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\Declarations.h" />
+    <ClInclude Include="include\RenderingRoutine.h" />
     <ClInclude Include="include\RenderSystem.h" />
     <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\RenderingRoutine.cpp" />
     <ClCompile Include="src\RenderSystem.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
