@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "../include/Application.h"
+#include "../include/RenderSystem.h"
 
 namespace oglwork
 {
@@ -62,6 +63,10 @@ bool Application::Initialize(const AppParams& params)
 		return false;
 	}
 
+	m_RenderSystem.reset(new RenderSystem(m_Window));
+
+	SDL_GL_SetSwapInterval(params.VSync ? 1 : 0);
+
 	m_PerfFrequency = SDL_GetPerformanceFrequency();
 
 	return true;
@@ -101,9 +106,15 @@ void Application::Run()
 		auto dt = double(now - m_LastFrameCounter) / m_PerfFrequency;
 
 		Update(dt);
+		m_RenderSystem->Draw(dt);
 
 		m_LastFrameCounter = now;
 	}
+}
+
+RenderSystem* Application::GetRenderSystem() const
+{
+	return m_RenderSystem.get();
 }
 
 void Application::Log(int category, SDL_LogPriority priority, const char* message)
