@@ -83,6 +83,11 @@
   <ItemGroup>
     <ProjectReference Include="..\ThirdParty\glew-1.10.0\build\vc10\glew_shared.vcxproj">
       <Project>{55ae3d72-7de6-f19f-aef2-9ae8ca26cf3d}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\ThirdParty\SDL2\VisualC\SDL\SDL_VS2012.vcxproj">
       <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>

@@ -10,8 +10,10 @@ struct APP_EXPORTED_SYMBOL AppParams
 	const char* Name;
 	unsigned Width;
 	unsigned Height;
+	unsigned MultisampleCount;
 	bool Fullscreen;
 	bool VSync;
+	bool sRGB;
 };
 
 class APP_EXPORTED_SYMBOL Application
