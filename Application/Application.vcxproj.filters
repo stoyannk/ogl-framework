@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{9097169f-4487-46fd-8b7d-5ac870562287}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Application.h">
@@ -30,6 +33,18 @@
     <ClInclude Include="include\RenderingRoutine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Utilities\MathInlines.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="include\VertexAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OGLPtrs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\OGLPtrsDecls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -42,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\RenderingRoutine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OGLPtrs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

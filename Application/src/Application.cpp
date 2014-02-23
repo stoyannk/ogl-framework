@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "../include/Application.h"
 #include "../include/RenderSystem.h"
+#include "../include/OGLPtrsDecls.h"
 
 namespace oglwork
 {
@@ -79,6 +80,7 @@ bool Application::Initialize(const AppParams& params)
 		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Unable to initialize GLEW");
 		return false;
 	}
+	SetResourceFunctionPointers();
 
 	m_RenderSystem.reset(new RenderSystem(m_Window));
 
