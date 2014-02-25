@@ -4,11 +4,56 @@ namespace oglwork
 {
 
 struct buffer_trait
-{};
+{
+	static void Generate(GLuint* object)
+	{
+		glGenBuffers(1, object);
+	}
+
+	static void Delete(GLuint* object)
+	{
+		glDeleteBuffers(1, object);
+	}
+};
+
 struct texture_trait
-{};
+{
+	static void Generate(GLuint* object)
+	{
+		glGenTextures(1, object);
+	}
+
+	static void Delete(GLuint* object)
+	{
+		glDeleteTextures(1, object);
+	}
+};
+
 struct vao_trait
-{};
+{
+	static void Generate(GLuint* object)
+	{
+		glGenVertexArrays(1, object);
+	}
+
+	static void Delete(GLuint* object)
+	{
+		glDeleteVertexArrays(1, object);
+	}
+};
+
+struct program_trait
+{
+	static void Generate(GLuint* object)
+	{
+		*object = glCreateProgram();
+	}
+
+	static void Delete(GLuint* object)
+	{
+		glDeleteProgram(*object);
+	}
+};
 
 template<typename Trait>
 class OGLResource
@@ -72,7 +117,7 @@ public:
 	void Generate()
 	{
 		m_Counter = new unsigned;
-		Gen(1, &m_Object);
+		Trait::Generate(&m_Object);
 		*m_Counter = 1;
 	}
 
@@ -88,7 +133,7 @@ public:
 			if (--(*m_Counter) == 0)
 			{
 				delete m_Counter;
-				Delete(1, &m_Object);
+				Trait::Delete(&m_Object);
 			}
 			m_Counter = nullptr;
 			m_Object = 0;
@@ -107,11 +152,6 @@ private:
 
 	unsigned* m_Counter;
 	GLuint m_Object;
-
-	static APP_EXPORTED_SYMBOL void(__stdcall* Gen)(GLsizei, GLuint*);
-	static APP_EXPORTED_SYMBOL void(__stdcall* Delete)(GLsizei, const GLuint*);
 };
-
-void SetResourceFunctionPointers();
 
 }

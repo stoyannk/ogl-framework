@@ -14,4 +14,7 @@ typedef OGLResource<texture_trait> Texture;
 extern template APP_EXPORTED_SYMBOL class OGLResource<vao_trait>;
 typedef OGLResource<vao_trait> VAO;
 
+extern template APP_EXPORTED_SYMBOL class OGLResource<program_trait>;
+typedef OGLResource<program_trait> Program;
+
 }
