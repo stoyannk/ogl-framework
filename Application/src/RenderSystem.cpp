@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../include/RenderSystem.h"
+#include <RenderSystem.h>
 
 namespace oglwork
 {
@@ -30,15 +30,18 @@ void RenderSystem::Draw(double dt)
 
 void RenderSystem::AddRoutine(RenderingRoutine* routine)
 {
+	routine->SetSystem(this);
 	m_Routines.push_back(routine);
 }
 
 bool RenderSystem::RemoveRoutine(RenderingRoutine* routine)
 {
-	auto rit = std::find(m_Routines.cbegin(), m_Routines.cend(), routine);
+	auto rit = std::find(m_Routines.begin(), m_Routines.end(), routine);
 
 	if (rit == m_Routines.cend())
 		return false;
+
+	(*rit)->SetSystem(nullptr);
 
 	m_Routines.erase(rit);
 

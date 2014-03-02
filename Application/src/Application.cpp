@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "../include/Application.h"
-#include "../include/RenderSystem.h"
-#include "../include/OGLPtrsDecls.h"
+#include <Application.h>
+#include <RenderSystem.h>
+#include <OGLPtrsDecls.h>
 
 namespace oglwork
 {

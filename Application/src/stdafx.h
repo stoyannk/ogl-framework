@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../include/Declarations.h"
+#include <Declarations.h>
 
 #include <SDL.h>
 #include <GL/glew.h>

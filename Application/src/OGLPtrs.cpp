@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "../include/OGLPtrs.h"
+#include <OGLPtrs.h>
 
 namespace oglwork
 {

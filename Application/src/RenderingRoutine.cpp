@@ -1,9 +1,14 @@
 #include "stdafx.h"
 
-#include "../include/RenderingRoutine.h"
+#include <RenderingRoutine.h>
 
 namespace oglwork
 {
+
+void RenderingRoutine::SetSystem(RenderSystem* system)
+{
+	m_System = system;
+}
 
 RenderingRoutine::~RenderingRoutine()
 {}
