@@ -5,6 +5,8 @@
 #include <SDL.h>
 #include <GL/glew.h>
 
+#include <Errors.h>
+
 #include <string>
 #include <fstream>
 #include <iomanip>

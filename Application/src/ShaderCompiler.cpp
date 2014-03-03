@@ -56,11 +56,11 @@ bool CompileFromFile(
 	glCompileShader(object);
 	GLint infoLogLen = 0;
 	glGetShaderiv(object, GL_INFO_LOG_LENGTH, &infoLogLen);
-	if (infoLogLen)
+	if (infoLogLen > 1)
 	{
 		std::string log;
 		log.resize(infoLogLen);
-		glGetShaderInfoLog(object, infoLogLen, nullptr, &log[0]);
+		glGetShaderInfoLog(object, infoLogLen - 1, nullptr, &log[0]);
 
 		ostr << name << " shader compilation output: " << log << std::endl;
 	}
@@ -134,11 +134,11 @@ Program ShaderCompiler::CreateProgramFromFiles(
 	std::ostringstream ostr;
 	GLint infoLogLen = 0;
 	glGetProgramiv(result.Get(), GL_INFO_LOG_LENGTH, &infoLogLen);
-	if (infoLogLen)
+	if (infoLogLen > 1)
 	{
 		std::string log;
 		log.resize(infoLogLen);
-		glGetProgramInfoLog(result.Get(), infoLogLen, nullptr, &log[0]);
+		glGetProgramInfoLog(result.Get(), infoLogLen - 1, nullptr, &log[0]);
 
 		ostr << "Program link output: " << log << std::endl;
 	}

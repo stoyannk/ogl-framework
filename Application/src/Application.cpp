@@ -14,6 +14,33 @@ void LogOutputFunction(void* userdata,
 	((Application*)userdata)->Log(category, priority, message);
 }
 
+void __stdcall gl_error(GLenum source,
+	GLenum type,
+	GLuint id,
+	GLenum severity,
+	GLsizei length,
+	const GLchar* message,
+	GLvoid* userParam)
+{
+	SDL_LogPriority priority;
+	switch (severity)
+	{
+	case GL_DEBUG_SEVERITY_LOW:
+		priority = SDL_LOG_PRIORITY_DEBUG;
+		break;
+	case GL_DEBUG_SEVERITY_MEDIUM:
+		priority = SDL_LOG_PRIORITY_INFO;
+		break;
+	case GL_DEBUG_SEVERITY_HIGH:
+		priority = SDL_LOG_PRIORITY_ERROR;
+		break;
+	}
+	LogOutputFunction(userParam,
+		SDL_LOG_CATEGORY_RENDER,
+		priority,
+		message);
+}
+
 Application::Application()
 	: m_Window(nullptr)
 	, m_OglContext(nullptr)
@@ -31,6 +58,8 @@ bool Application::Initialize(const AppParams& params)
 	}
 
 	SDL_LogSetOutputFunction(&LogOutputFunction, this);
+
+	SDL_LogSetAllPriority(params.LogPriority);
 
 	SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION, "Initialization successful");
 
@@ -81,6 +110,12 @@ bool Application::Initialize(const AppParams& params)
 		return false;
 	}
 	
+	if (params.EnableDebugOutput)
+	{
+		glDebugMessageCallbackARB(gl_error, this);
+		glEnable(GL_DEBUG_OUTPUT);
+	}
+
 	m_RenderSystem.reset(new RenderSystem(m_Window));
 
 	SDL_GL_SetSwapInterval(params.VSync ? 1 : 0);
@@ -179,4 +214,18 @@ void Application::Log(int category, SDL_LogPriority priority, const char* messag
 		<< std::endl;
 }
 
+}
+
+GLenum CheckGLError()
+{
+	auto error = glGetError();
+	if (error != GL_NO_ERROR) {
+		SDL_LogError(SDL_LOG_CATEGORY_RENDER, (const char*)gluErrorString(error));
+	}
+	return error;
+}
+
+void APP_EXPORTED_SYMBOL ClearGLErrors()
+{
+	while (CheckGLError() != GL_NO_ERROR);
 }
