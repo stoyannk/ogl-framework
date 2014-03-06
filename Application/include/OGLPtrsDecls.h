@@ -7,6 +7,7 @@ namespace oglwork
 
 extern template APP_EXPORTED_SYMBOL class OGLResource<buffer_trait>;
 typedef OGLResource<buffer_trait> Buffer;
+typedef std::vector<Buffer> BuffersVec;
 
 extern template APP_EXPORTED_SYMBOL class OGLResource<texture_trait>;
 typedef OGLResource<texture_trait> Texture;

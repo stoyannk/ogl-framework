@@ -104,17 +104,20 @@
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\Declarations.h" />
     <ClInclude Include="include\Errors.h" />
+    <ClInclude Include="include\Mesh.h" />
     <ClInclude Include="include\OGLPtrs.h" />
     <ClInclude Include="include\OGLPtrsDecls.h" />
     <ClInclude Include="include\RenderingRoutine.h" />
     <ClInclude Include="include\RenderSystem.h" />
     <ClInclude Include="include\ShaderCompiler.h" />
+    <ClInclude Include="include\Subset.h" />
     <ClInclude Include="include\Utilities\MathInlines.h" />
     <ClInclude Include="include\VertexAttribute.h" />
     <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\OGLPtrs.cpp" />
     <ClCompile Include="src\RenderingRoutine.cpp" />
     <ClCompile Include="src\RenderSystem.cpp" />
@@ -123,6 +126,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Subset.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

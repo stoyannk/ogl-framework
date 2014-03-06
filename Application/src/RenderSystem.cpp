@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <RenderSystem.h>
+#include <VertexAttribute.h>
 
 namespace oglwork
 {
@@ -51,6 +52,37 @@ bool RenderSystem::RemoveRoutine(RenderingRoutine* routine)
 void RenderSystem::ClearRoutines()
 {
 	m_Routines.clear();
+}
+
+void BindVertexAttributes(
+	const VertexAttributesVec& vertexAttributes,
+	const std::vector<Buffer>& vertexBuffers)
+{
+	unsigned arrayId = 0;
+	for (auto bufId = 0u; bufId < vertexBuffers.size(); ++bufId)
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[bufId].Get());
+		auto attribId = 0u;
+		for (auto i = 0u; i < vertexAttributes.size(); ++i)
+		{
+			const auto& attribute = vertexAttributes[i];
+			if (attribute.VertexBufferBinding != bufId)
+				continue;
+
+			if (attribute.PreserveInteger)
+			{
+				glVertexAttribIPointer(attribId, attribute.Size, attribute.Type, attribute.Stride, (GLvoid *)attribute.Offset);
+			}
+			else
+			{
+				glVertexAttribPointer(attribId, attribute.Size, attribute.Type, attribute.Normalized, attribute.Stride, (GLvoid *)attribute.Offset);
+			}
+
+			glEnableVertexAttribArray(arrayId++);
+
+			attribId++;
+		}
+	}
 }
 
 }
