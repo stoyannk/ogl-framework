@@ -49,11 +49,16 @@ public:
 	
 	RenderSystem* GetRenderSystem() const;
 
+	virtual void OnKeyDownEvent(const SDL_KeyboardEvent& event) {}
+	virtual void OnKeyUpEvent(const SDL_KeyboardEvent& event) {}
+	
+protected:
+	AppParams m_InitParams;
+
 private:
 	Application(const Application&);
 	Application& operator=(const Application&);
 
-	AppParams m_InitParams;
 	std::ofstream m_Log;
 
 	SDL_Window* m_Window;

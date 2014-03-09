@@ -151,6 +151,12 @@ void Application::Run()
 			case SDL_QUIT:
 				m_Quit = true;
 				break;
+			case SDL_KEYDOWN:
+				OnKeyDownEvent(event.key);
+				break;
+			case SDL_KEYUP:
+				OnKeyUpEvent(event.key);
+				break;
 			}
 		}
 
